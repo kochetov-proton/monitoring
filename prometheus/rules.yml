@@ -1,0 +1,11 @@
+groups:
+- name: host_alerts
+  rules:
+  - alert: HostDown
+    expr: up == 0
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Хост {{ $labels.instance }} недоступен"
+      description: "Prometheus не получает метрики от {{ $labels.instance }} более 2 минут."
